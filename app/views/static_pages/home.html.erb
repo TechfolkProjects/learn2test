@@ -7,32 +7,22 @@
     <li>An understanding of objects</li>
     That's it actually! Our goal is to take you from 0 to 100 with Watir and Cucumber
   </ul>
-<center>
-<table class="table">
+  <center>
+  <% if user_signed_in? %>
+  <p>Welcome <%= current_user.first_name + ' ' + current_user.last_name %></p>
+  <table class="table">
+    <tr>
+    <th>Section</th>
+    <th>Your Progress</th>
+  </tr>
+  <% @section.each do |section| %>
   <tr>
-  <th>Section</th>
-  <th>Your Progress</th>
-</tr>
-<tr>
-  <td>Webdriving With Ruby</td>
-  <td>Placeholder</td>
-  <td><%= link_to ">>", webdriving_with_ruby_path, class: "btn btn-primary"%></td>
-</tr>
-
-    <tr>
-      <td>Gherkinizing your application</td>
-      <td>Status will go here</td>
-      <td><%= link_to ">>", page_unavailable_path, class: "btn btn-primary" %></td>
-    </tr>
-    <tr>
-      <td>Page Objects</td>
-      <td>Placeholder</td>
-      <td><%= link_to ">>", page_unavailable_path, class: "btn btn-primary" %></td>
-    </tr>
-    <tr>
-      <td>Stuff to Break</td>
-      <td>Placeholder</td>
-      <td><%= link_to ">>", page_unavailable_path, class: "btn btn-primary" %></td>
-    </tr>
-</table>
+    <td><%= section.name %></td>
+  </tr>
+  </table>
+  <% end %>
+  <% else %>
+  <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
+  <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
+  <% end %>
 </center>
