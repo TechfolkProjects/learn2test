@@ -1,23 +1,22 @@
 <center>
-  <h1>Welcome to the Testing Wonderland</h1>
+  <h1>Welcome to the Testing Wonderland</h1> <br>
 </center>
-  <ul>Some Prerequisites:
-    <li>Some basic Ruby Knowledge</li>
-    <li>Some basic understanding of the command terminal</li>
-    <li>An understanding of objects</li>
-    That's it actually! Our goal is to take you from 0 to 100 with Watir and Cucumber
-  </ul>
+
   <center>
   <% if user_signed_in? %>
-  <p>Welcome <%= current_user.first_name + ' ' + current_user.last_name %></p>
   <table class="table">
     <tr>
     <th>Section</th>
     <th>Your Progress</th>
+    <th></th>
   </tr>
   <% @section.each do |section| %>
   <tr>
     <td><%= section.name %></td>
+    <% challenge = Challenge.where(:section_id => section.id).count %>
+    <% progress = Submission.where(:sections_id => section.id, :completed => true).count %>
+    <td><%= "#{progress} out of #{challenge}" %></td>
+    <td><%= link_to ">>", '#', class: "btn btn-primary" %></td>
   </tr>
   </table>
   <% end %>
