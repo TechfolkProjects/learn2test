@@ -16,7 +16,7 @@
     <% challenge = Challenge.where(:section_id => section.id).count %>
     <% progress = Submission.where(:sections_id => section.id, :completed => true).count %>
     <td><%= "#{progress} out of #{challenge}" %></td>
-    <td><%= link_to ">>", '#', class: "btn btn-primary" %></td>
+    <td><%= link_to ">>", challenge_index_path(section_id: section.id), class: "btn btn-primary" %></td>
   </tr>
   </table>
   <% end %>
